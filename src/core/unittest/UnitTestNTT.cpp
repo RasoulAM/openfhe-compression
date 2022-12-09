@@ -34,7 +34,7 @@
 
   Test cases in this file make the following assumptions:
   1. All functionatliy of plaintext (both BytePlainTextEncoding and IntPlainTextEncoding) work.
-  2. Encrypt/Decrypt work
+  2. Encrypt/DecryptCompressed work
   3. Math layer operations such as functions in nbtheory
   */
 

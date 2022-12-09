@@ -212,28 +212,28 @@ int main() {
     std::cout << "x1 = " << result;
     std::cout << "Estimated precision in bits: " << result->GetLogPrecision() << std::endl;
 
-    // Decrypt the result of addition
+    // DecryptCompressed the result of addition
     cc->Decrypt(keys.secretKey, cAdd, &result);
     result->SetLength(batchSize);
     std::cout << "x1 + x2 = " << result;
     std::cout << "Estimated precision in bits: " << result->GetLogPrecision() << std::endl;
 
-    // Decrypt the result of subtraction
+    // DecryptCompressed the result of subtraction
     cc->Decrypt(keys.secretKey, cSub, &result);
     result->SetLength(batchSize);
     std::cout << "x1 - x2 = " << result << std::endl;
 
-    // Decrypt the result of scalar multiplication
+    // DecryptCompressed the result of scalar multiplication
     cc->Decrypt(keys.secretKey, cScalar, &result);
     result->SetLength(batchSize);
     std::cout << "4 * x1 = " << result << std::endl;
 
-    // Decrypt the result of multiplication
+    // DecryptCompressed the result of multiplication
     cc->Decrypt(keys.secretKey, cMul, &result);
     result->SetLength(batchSize);
     std::cout << "x1 * x2 = " << result << std::endl;
 
-    // Decrypt the result of rotations
+    // DecryptCompressed the result of rotations
 
     cc->Decrypt(keys.secretKey, cRot1, &result);
     result->SetLength(batchSize);

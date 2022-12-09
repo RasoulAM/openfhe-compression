@@ -16,7 +16,7 @@ Interactions
   graph BT
       A[Input Plaintext] --> |"1) Encode"| B(Encoded Plaintext);
       B(Encoded Plaintext) --> |"2) Encrypt"| C(Ciphertext);
-      C(Ciphertext) --> |"3) Decrypt"| B(Encoded Plaintext);
+      C(Ciphertext) --> |"3) DecryptCompressed"| B(Encoded Plaintext);
       B(Encoded Plaintext) --> |"4) SetLength"| D(Homomorphically Transformed Plaintext);
 
 File Listings

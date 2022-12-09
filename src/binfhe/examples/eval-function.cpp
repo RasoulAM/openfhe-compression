@@ -34,18 +34,88 @@
  */
 
 #include "binfhecontext.h"
+#include <iostream>
+#include <ipcl/ipcl.hpp>
 
 using namespace lbcrypto;
 
+
+
+
+std::vector<std::string> debug(ipcl::PlainText pt){
+    size_t n = pt.getSize();
+    std::vector<std::string> bbs(n);
+    for (size_t i=0;i<n;i++){
+        BigNumber(pt[i]).num2hex(bbs[i]);
+    }
+    return bbs;
+}
+std::vector<std::string> debug(ipcl::CipherText ct, ipcl::PrivateKey * sk){
+    return debug(sk->decrypt(ct));
+}
+long long hex_ll(const std::string & hex){
+    long long val;
+    std::stringstream ss;
+    ss<<std::hex<<hex;
+    ss>>val;
+    return val;
+}
+
+
+ipcl::CipherText Compress(const ipcl::CipherText& s, ConstLWECiphertext& ct, ipcl::PrivateKey * sk = nullptr){
+    const ipcl::PublicKey* a_pk = s.getPubKey();
+    auto _a = (-(ct->GetA())).ConvertToInt();
+    auto a = (ct->GetA()).ConvertToInt();
+    ipcl::PlainText _a_pt(_a);
+    ipcl::PlainText a_pt(a);
+    uint32_t n       = _a_pt.getSize();
+    ipcl::CipherText prod = _a_pt *s;
+    const BigNumber& sq = a_pk->getNSQ();
+    auto sum = prod[0]; // sum of prod
+    for (size_t i = 1; i < n; ++i) {
+        sum = sum*prod[i] %sq; // paillier for addition
+    }
+    auto ret = ipcl::CipherText(a_pk,sum)+ipcl::PlainText(ct->GetB().ConvertToInt());
+    return ret;
+
+}
+
+void DecryptCompressed(const ipcl::CipherText& r_ct, ipcl::PrivateKey*  a_sk, ConstLWECiphertext& ct, LWEPlaintext* result,
+             const LWEPlaintextModulus& p){
+    auto q = ct->GetModulus();
+    ipcl::PlainText r_pt = a_sk->decrypt(r_ct);
+    std::string bb;
+    BigNumber(r_pt).num2hex(bb);
+    NativeInteger r (bb);
+    r.ModEq(q);
+    r.ModAddFastEq((q / (p * 2)), q);
+    *result = ((NativeInteger(p) * r) / q).ConvertToInt();
+}
+
+
 int main() {
+
+
+
     // Sample Program: Step 1: Set CryptoContext
     auto cc = BinFHEContext();
     cc.GenerateBinFHEContext(STD128, true, 12);
 
     // Sample Program: Step 2: Key Generation
 
+    // Generate Paillier Keys
+    ipcl::keyPair key = ipcl::generateKeypair(2048, true);
+
     // Generate the secret key
     auto sk = cc.KeyGen();
+
+    // Encrypt SK (Paillier)
+    const NativeInteger q = cc.GetParams()->GetLWEParams()->Getq();
+    NativeVector ske = sk->GetElement();
+    ske.SwitchModulus(q);
+    ipcl::PlainText sk_pt(ske.ConvertToInt());
+    ipcl::CipherText sk_ct = key.pub_key->encrypt(sk_pt);
+
 
     std::cout << "Generating the bootstrapping keys..." << std::endl;
 
@@ -77,10 +147,12 @@ int main() {
         auto ct_cube = cc.EvalFunc(ct1, lut);
 
         LWEPlaintext result;
-
+        auto r_ct = Compress(sk_ct, ct_cube, key.priv_key);
+        DecryptCompressed(r_ct, key.priv_key, ct_cube, &result, p);
+        std::cout << "Input: " << i << ". Expected: " << fp(i, p) << ". Evaluated[FHE] = " << result;
         cc.Decrypt(sk, ct_cube, &result, p);
 
-        std::cout << "Input: " << i << ". Expected: " << fp(i, p) << ". Evaluated = " << result << std::endl;
+        std::cout << ". Evaluated[CFHE] = " << result << std::endl;
     }
 
     return 0;

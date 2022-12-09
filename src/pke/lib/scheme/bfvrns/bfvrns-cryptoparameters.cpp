@@ -444,7 +444,7 @@ void CryptoParametersBFVRNS::PrecomputeCRTTables(KeySwitchTechnique ksTech, Scal
         }
 
         /////////////////////////////////////
-        // BFVrns : Decrypt : ScaleAndRound
+        // BFVrns : DecryptCompressed : ScaleAndRound
         /////////////////////////////////////
 
         usint qMSB     = moduliQ[0].GetMSB();

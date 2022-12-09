@@ -219,7 +219,7 @@ public:
 
             return m_PKE->Decrypt(ciphertext, privateKey, plaintext);
         }
-        OPENFHE_THROW(config_error, "Decrypt operation has not been enabled");
+        OPENFHE_THROW(config_error, "DecryptCompressed operation has not been enabled");
     }
 
     virtual DecryptResult Decrypt(ConstCiphertext<Element> ciphertext, const PrivateKey<Element> privateKey,
@@ -232,7 +232,7 @@ public:
 
             return m_PKE->Decrypt(ciphertext, privateKey, plaintext);
         }
-        OPENFHE_THROW(config_error, "Decrypt operation has not been enabled");
+        OPENFHE_THROW(config_error, "DecryptCompressed operation has not been enabled");
     }
 
     std::shared_ptr<std::vector<Element>> EncryptZeroCore(const PrivateKey<Element> privateKey) const {

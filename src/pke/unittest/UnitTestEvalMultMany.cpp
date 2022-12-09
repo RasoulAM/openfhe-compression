@@ -164,7 +164,7 @@ static void RunEvalMultManyTest(CryptoContext<Element> cryptoContext, std::strin
     auto ciphertextMul12345 = cryptoContext->EvalMultMany(cipherTextList);
 
     ////////////////////////////////////////////////////////////
-    // Decrypt EvalMultMany
+    // DecryptCompressed EvalMultMany
     ////////////////////////////////////////////////////////////
 
     Plaintext plaintextMulMany;

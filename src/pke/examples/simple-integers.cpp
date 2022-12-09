@@ -98,15 +98,15 @@ int main() {
 
     // Sample Program: Step 5: Decryption
 
-    // Decrypt the result of additions
+    // DecryptCompressed the result of additions
     Plaintext plaintextAddResult;
     cryptoContext->Decrypt(keyPair.secretKey, ciphertextAddResult, &plaintextAddResult);
 
-    // Decrypt the result of multiplications
+    // DecryptCompressed the result of multiplications
     Plaintext plaintextMultResult;
     cryptoContext->Decrypt(keyPair.secretKey, ciphertextMultResult, &plaintextMultResult);
 
-    // Decrypt the result of rotations
+    // DecryptCompressed the result of rotations
     Plaintext plaintextRot1;
     cryptoContext->Decrypt(keyPair.secretKey, ciphertextRot1, &plaintextRot1);
     Plaintext plaintextRot2;

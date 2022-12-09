@@ -459,6 +459,10 @@ else() # WITH_OPENMP == OFF
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unknown-pragmas")
 endif()
 
+find_package(IPCL 1.1.4
+        HINTS ~/diaa/pailliercryptolib/build/lib/cmake/ipcl-1.1.4/
+        REQUIRED)
+
 #--------------------------------------------------------------------
 # Pthreads logic (only for Google benchmark)
 #--------------------------------------------------------------------
@@ -651,6 +655,7 @@ endif()
 if (WITH_INTEL_HEXL)
 	list(APPEND THIRDPARTYLIBS HEXL::hexl)
 endif()
+list(APPEND THIRDPARTYLIBS IPCL::ipcl)
 
 set(DEMODATAPATH ${CMAKE_CURRENT_SOURCE_DIR}/demoData)
 set(BINDEMODATAPATH ${CMAKE_CURRENT_BINARY_DIR}/demoData)

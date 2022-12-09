@@ -305,6 +305,20 @@ public:
     size_t GetLength() const {
         return this->m_data.size();
     }
+    /**
+   * Gets the vector in usint.
+   *
+   * @return usint vector .
+   */
+    std::vector<uint32_t> ConvertToInt() const{
+        auto a = *this;
+        uint32_t n       = a.GetLength();
+        std::vector<uint32_t> ret(n);
+        for (size_t i = 0; i < n; ++i) {
+            ret[i]= a[i].ConvertToInt();
+        }
+        return ret;
+    }
 
     // MODULAR ARITHMETIC OPERATIONS
 

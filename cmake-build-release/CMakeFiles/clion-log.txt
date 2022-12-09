@@ -1,0 +1,41 @@
+/home/r5akhava/.cache/JetBrains/RemoteDev/dist/68305831d57ea_CLion-2022.2.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Release -S /home/r5akhava/diaa/openfhe-development -B /home/r5akhava/diaa/openfhe-development/cmake-build-release
+-- Building in Release mode
+-- BUILD_UNITTESTS:  ON
+-- BUILD_EXAMPLES:   ON
+-- BUILD_BENCHMARKS: ON
+-- BUILD_EXTRAS:     OFF
+-- BUILD_STATIC:     OFF
+-- BUILD_SHARED:     ON
+-- GIT_SUBMOD_AUTO:  ON
+-- WITH_BE2:         ON
+-- WITH_BE4:         ON
+-- WITH_NTL:         OFF
+-- WITH_TCM:         OFF
+-- WITH_INTEL_HEXL:  OFF
+-- WITH_OPENMP:      ON
+-- NATIVE_SIZE:      64
+-- CKKS_M_FACTOR:    1
+-- WITH_NATIVEOPT:   OFF
+-- WITH_COVTEST:     OFF
+-- USE_MACPORTS:     OFF
+-- BUILTIN_INFO_AVAILABLE is defined
+***** INSTALL IS AT /usr/local; to change, run cmake with -DCMAKE_INSTALL_PREFIX=/your/path
+-- Architecture is x86_64
+-- NATIVEINT is set to 64
+-- MATHBACKEND is set to 4
+-- Found OpenMP_C: -fopenmp (found version "4.5") 
+-- Found OpenMP_CXX: -fopenmp (found version "4.5") 
+-- Intel Paillier Cryptosystem Library found
+-- Found OpenMP_C: -fopenmp (found version "4.5") 
+-- Found OpenMP_CXX: -fopenmp (found version "4.5") 
+-- Submodule update
+-- Failed to find LLVM FileCheck
+-- git version: v1.5.5-14-ge451e50e normalized to 1.5.5.14
+-- Version: 1.5.5.14
+-- Performing Test HAVE_STD_REGEX -- success
+-- Performing Test HAVE_GNU_POSIX_REGEX -- failed to compile
+-- Performing Test HAVE_POSIX_REGEX -- success
+-- Performing Test HAVE_STEADY_CLOCK -- success
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/r5akhava/diaa/openfhe-development/cmake-build-release

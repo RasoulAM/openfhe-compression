@@ -103,7 +103,7 @@ void CKKSNoiseFloodingDemo() {
     // We run the encrypted computation the first time.
     auto noiseCiphertext = EncryptedComputation(cryptoContextNoiseEstimation, keyPairNoiseEstimation.publicKey);
 
-    // Decrypt  noise
+    // DecryptCompressed  noise
     Plaintext noisePlaintext;
     cryptoContextNoiseEstimation->Decrypt(keyPairNoiseEstimation.secretKey, noiseCiphertext, &noisePlaintext);
     double noise = noisePlaintext->GetLogError();
@@ -142,7 +142,7 @@ void CKKSNoiseFloodingDemo() {
     // We run the encrypted computation the second time.
     auto ciphertextResult = EncryptedComputation(cryptoContextEvaluation, keyPairEvaluation.publicKey);
 
-    // Decrypt final result
+    // DecryptCompressed final result
     Plaintext result;
     cryptoContextEvaluation->Decrypt(keyPairEvaluation.secretKey, ciphertextResult, &result);
     size_t vecSize = 8;

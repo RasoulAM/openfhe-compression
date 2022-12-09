@@ -1062,7 +1062,7 @@ public:
     }
 
     /**
-   * Decrypt a single ciphertext into the appropriate plaintext
+   * DecryptCompressed a single ciphertext into the appropriate plaintext
    *
    * @param privateKey - decryption key
    * @param ciphertext - ciphertext to decrypt

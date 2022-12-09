@@ -114,12 +114,12 @@ TEST_P(UTBFVRNS_DECRYPT, BFVrns_Decrypt) {
     if (!(ptm & (ptm - 1))) {
         auto tmp_a = plaintext->GetCoefPackedValue();
         auto tmp_b = result->GetCoefPackedValue();
-        checkEquality(tmp_a, tmp_b, vecsize, "BFVrns Decrypt fails");
+        checkEquality(tmp_a, tmp_b, vecsize, "BFVrns DecryptCompressed fails");
     }
     else {
         auto tmp_a = plaintext->GetPackedValue();
         auto tmp_b = result->GetPackedValue();
-        checkEquality(tmp_a, tmp_b, vecsize, "BFVrns Decrypt fails");
+        checkEquality(tmp_a, tmp_b, vecsize, "BFVrns DecryptCompressed fails");
     }
 }
 

@@ -2052,18 +2052,41 @@ protected:
     void AssignVal(const std::string& str) {
         NativeInt test_value = 0;
         m_value              = 0;
-        for (size_t i = 0; i < str.length(); i++) {
-            int v = str[i] - '0';
-            if (v < 0 || v > 9) {
-                OPENFHE_THROW(lbcrypto::type_error, "String contains a non-digit");
-            }
-            m_value *= 10;
-            m_value += v;
+        auto hex_found  = str.find("0x");
+        if (hex_found!=std::string::npos){
+            for (size_t i = hex_found+2; i < str.length(); i++) {
+                int v = str[i];
+                if (v>='0' && v<='9'){
+                    v-='0';
+                }else{
+                    v = v-'a'+10;
+                }
+                if (v < 0 || v > 16) {
+                    OPENFHE_THROW(lbcrypto::type_error, "String contains a non-digit "+ std::to_string(str[i])+" " + std::to_string(i));
+                }
+                m_value *= 16;
+                m_value += v;
 
-            if (m_value < test_value) {
-                OPENFHE_THROW(lbcrypto::math_error, str + " is too large to fit in this native integer object");
+                if (m_value < test_value) {
+                    OPENFHE_THROW(lbcrypto::math_error, str + " is too large to fit in this native integer object");
+                }
+                test_value = m_value;
             }
-            test_value = m_value;
+        }
+        else {
+            for (size_t i = 0; i < str.length(); i++) {
+                int v = str[i] - '0';
+                if (v < 0 || v > 9) {
+                    OPENFHE_THROW(lbcrypto::type_error, "String contains a non-digit");
+                }
+                m_value *= 10;
+                m_value += v;
+
+                if (m_value < test_value) {
+                    OPENFHE_THROW(lbcrypto::math_error, str + " is too large to fit in this native integer object");
+                }
+                test_value = m_value;
+            }
         }
     }
 

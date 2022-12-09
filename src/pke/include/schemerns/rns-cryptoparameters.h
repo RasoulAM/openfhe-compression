@@ -854,7 +854,7 @@ public:
     }
 
     /////////////////////////////////////
-    // BFVrns : Decrypt : ScaleAndRound
+    // BFVrns : DecryptCompressed : ScaleAndRound
     /////////////////////////////////////
 
     /**
@@ -1486,7 +1486,7 @@ protected:
     std::vector<NativeInteger> m_rInvModq;
 
     /////////////////////////////////////
-    // BFVrns : Decrypt : ScaleAndRound
+    // BFVrns : DecryptCompressed : ScaleAndRound
     /////////////////////////////////////
 
     // Stores \frac{t*{Q/q_i}^{-1}/q_i}

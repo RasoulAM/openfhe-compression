@@ -1060,7 +1060,7 @@ protected:
 
             cc->Decrypt(kp2.secretKey, newCt, &plaintextNew);
 
-            EXPECT_EQ(plaintext->GetStringValue(), plaintextNew->GetStringValue()) << "Key-Switched Decrypt fails";
+            EXPECT_EQ(plaintext->GetStringValue(), plaintextNew->GetStringValue()) << "Key-Switched DecryptCompressed fails";
         }
         catch (std::exception& e) {
             std::cerr << "Exception thrown from " << __func__ << "(): " << e.what() << std::endl;
@@ -1099,7 +1099,7 @@ protected:
             cc->Decrypt(kp2.secretKey, newCt, &plaintextNewKeySwitch);
 
             EXPECT_EQ(plaintext->GetStringValue(), plaintextNewKeySwitch->GetStringValue())
-                << "Key-Switched Decrypt fails";
+                << "Key-Switched DecryptCompressed fails";
 
             /**************************KEYSWITCH TEST END******************************/
             /**************************MODREDUCE TEST BEGIN******************************/
@@ -1114,7 +1114,7 @@ protected:
             cc->Decrypt(kp2.secretKey, newCt, &plaintextNewModReduce);
 
             EXPECT_EQ(plaintext->GetStringValue(), plaintextNewModReduce->GetStringValue())
-                << "Mod Reduced Decrypt fails";
+                << "Mod Reduced DecryptCompressed fails";
         }
         catch (std::exception& e) {
             std::cerr << "Exception thrown from " << __func__ << "(): " << e.what() << std::endl;

@@ -276,15 +276,15 @@ int main() {
     }
     std::cout << "The secret key has been deserialized." << std::endl;
 
-    // Decrypt the result of additions
+    // DecryptCompressed the result of additions
     Plaintext plaintextAddResult;
     cc->Decrypt(sk, ciphertextAddResult, &plaintextAddResult);
 
-    // Decrypt the result of multiplications
+    // DecryptCompressed the result of multiplications
     Plaintext plaintextMultResult;
     cc->Decrypt(sk, ciphertextMultResult, &plaintextMultResult);
 
-    // Decrypt the result of rotations
+    // DecryptCompressed the result of rotations
     Plaintext plaintextRot1;
     cc->Decrypt(sk, ciphertextRot1, &plaintextRot1);
     Plaintext plaintextRot2;

@@ -48,7 +48,7 @@ class StringEncoding : public PlaintextImpl {
     // enum EncodingType { CHAR7bit } encoding = CHAR7bit;
 
 public:
-    // these three constructors are used inside of Decrypt
+    // these three constructors are used inside of DecryptCompressed
     template <typename T, typename std::enable_if<std::is_same<T, Poly::Params>::value ||
                                                       std::is_same<T, NativePoly::Params>::value ||
                                                       std::is_same<T, DCRTPoly::Params>::value,

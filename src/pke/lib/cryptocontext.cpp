@@ -472,12 +472,12 @@ template <typename Element>
 DecryptResult CryptoContextImpl<Element>::Decrypt(ConstCiphertext<Element> ciphertext,
                                                   const PrivateKey<Element> privateKey, Plaintext* plaintext) {
     if (ciphertext == nullptr)
-        OPENFHE_THROW(config_error, "ciphertext passed to Decrypt is empty");
+        OPENFHE_THROW(config_error, "ciphertext passed to DecryptCompressed is empty");
     if (plaintext == nullptr)
-        OPENFHE_THROW(config_error, "plaintext passed to Decrypt is empty");
+        OPENFHE_THROW(config_error, "plaintext passed to DecryptCompressed is empty");
     if (privateKey == nullptr || Mismatched(privateKey->GetCryptoContext()))
         OPENFHE_THROW(config_error,
-                      "Information passed to Decrypt was not generated with "
+                      "Information passed to DecryptCompressed was not generated with "
                       "this crypto context");
 
     // determine which type of plaintext that you need to decrypt into
@@ -680,12 +680,12 @@ template <>
 DecryptResult CryptoContextImpl<DCRTPoly>::Decrypt(ConstCiphertext<DCRTPoly> ciphertext,
                                                    const PrivateKey<DCRTPoly> privateKey, Plaintext* plaintext) {
     if (ciphertext == nullptr)
-        OPENFHE_THROW(config_error, "ciphertext passed to Decrypt is empty");
+        OPENFHE_THROW(config_error, "ciphertext passed to DecryptCompressed is empty");
     if (plaintext == nullptr)
-        OPENFHE_THROW(config_error, "plaintext passed to Decrypt is empty");
+        OPENFHE_THROW(config_error, "plaintext passed to DecryptCompressed is empty");
     if (privateKey == nullptr || Mismatched(privateKey->GetCryptoContext()))
         OPENFHE_THROW(config_error,
-                      "Information passed to Decrypt was not generated with "
+                      "Information passed to DecryptCompressed was not generated with "
                       "this crypto context");
 
     // determine which type of plaintext that you need to decrypt into

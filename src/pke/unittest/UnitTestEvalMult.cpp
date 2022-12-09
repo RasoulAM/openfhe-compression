@@ -372,7 +372,7 @@ protected:
                                           cryptoContext->EvalMultMany(cipherTextList);
 
             ////////////////////////////////////////////////////////////
-            // Decrypt EvalMultMany
+            // DecryptCompressed EvalMultMany
             ////////////////////////////////////////////////////////////
             Plaintext plaintextMulMany;
             cryptoContext->Decrypt(keyPair.secretKey, ciphertextMul12345, &plaintextMulMany);

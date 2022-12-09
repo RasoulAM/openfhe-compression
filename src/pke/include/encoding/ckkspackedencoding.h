@@ -56,7 +56,7 @@ namespace lbcrypto {
 
 class CKKSPackedEncoding : public PlaintextImpl {
 public:
-    // these two constructors are used inside of Decrypt
+    // these two constructors are used inside of DecryptCompressed
     template <typename T, typename std::enable_if<std::is_same<T, Poly::Params>::value ||
                                                       std::is_same<T, NativePoly::Params>::value ||
                                                       std::is_same<T, DCRTPoly::Params>::value,
