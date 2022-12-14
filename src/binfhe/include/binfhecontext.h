@@ -291,15 +291,15 @@ public:
    */
     LWECiphertext EvalConstant(bool value) const;
 
-    const std::shared_ptr<BinFHECryptoParams> GetParams() {
+    const std::shared_ptr<BinFHECryptoParams> GetParams() const {
         return m_params;
     }
 
-    const std::shared_ptr<LWEEncryptionScheme> GetLWEScheme() {
+    std::shared_ptr<LWEEncryptionScheme> GetLWEScheme() {
         return m_LWEscheme;
     }
 
-    const std::shared_ptr<BinFHEScheme> GetBinFHEScheme() {
+    std::shared_ptr<BinFHEScheme> GetBinFHEScheme() {
         return m_binfhescheme;
     }
 
@@ -335,23 +335,20 @@ public:
     }
 
 private:
-    // Shared pointer to Ring GSW + LWE parameters
-    std::shared_ptr<BinFHECryptoParams> m_params = nullptr;
-
-    // Shared pointer to the underlying additive LWE scheme
-    std::shared_ptr<LWEEncryptionScheme> m_LWEscheme = nullptr;
-
-    // Shared pointer to the underlying RingGSW/RLWE scheme
-    std::shared_ptr<BinFHEScheme> m_binfhescheme = nullptr;
-
-    // Struct containing the bootstrapping keys
-    RingGSWBTKey m_BTKey = {0};
-
-    // Struct containing the bootstrapping keys
-    std::map<uint32_t, RingGSWBTKey> m_BTKey_map;
-
     // Whether to optimize time for sign eval
     bool m_timeOptimization = false;
+
+protected:
+    // Shared pointer to Ring GSW + LWE parameters
+    std::shared_ptr<BinFHECryptoParams> m_params = nullptr;
+    // Shared pointer to the underlying RingGSW/RLWE scheme
+    std::shared_ptr<BinFHEScheme> m_binfhescheme = nullptr;
+    // Shared pointer to the underlying additive LWE scheme
+    std::shared_ptr<LWEEncryptionScheme> m_LWEscheme = nullptr;
+    // Struct containing the bootstrapping keys
+    RingGSWBTKey m_BTKey = {0};
+    // Struct containing the bootstrapping keys
+    std::map<uint32_t, RingGSWBTKey> m_BTKey_map;
 };
 
 }  // namespace lbcrypto

@@ -553,6 +553,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/third-party/google-test/googletest )
 include_directories( ${CMAKE_SOURCE_DIR}/third-party/google-test/googletest/include )
 include_directories( ${CMAKE_SOURCE_DIR}/src/core/include )
 include_directories( ${CMAKE_BINARY_DIR}/src/core )
+include_directories( ~/diaa/pailliercryptolib/build/include/ )
 
 ### Handle third-party gperftools for optional tcmalloc
 
@@ -656,6 +657,7 @@ if (WITH_INTEL_HEXL)
 	list(APPEND THIRDPARTYLIBS HEXL::hexl)
 endif()
 list(APPEND THIRDPARTYLIBS IPCL::ipcl)
+list(APPEND THIRDPARTYSTATICLIBS IPCL::ipcl)
 
 set(DEMODATAPATH ${CMAKE_CURRENT_SOURCE_DIR}/demoData)
 set(BINDEMODATAPATH ${CMAKE_CURRENT_BINARY_DIR}/demoData)
