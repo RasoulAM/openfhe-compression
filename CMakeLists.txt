@@ -459,8 +459,8 @@ else() # WITH_OPENMP == OFF
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unknown-pragmas")
 endif()
 
-find_package(IPCL 1.1.4
-        HINTS ~/diaa/pailliercryptolib/build/lib/cmake/ipcl-1.1.4/
+find_package(IPCL 2.0.0
+        HINTS ~/diaa/pailliercryptolib/build/lib/cmake/ipcl-2.0.0/
         REQUIRED)
 
 #--------------------------------------------------------------------
